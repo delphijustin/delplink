@@ -111,15 +111,15 @@ break;
 if($indexphp===false){echo "savelink: Failed.<br>";}else{?>
 <center>Your shorten links:</center><p>
 <p>
-<input id="shorthttps" value="https://<?php echo $_SERVER['HTTP_HOST'].$short;?>" readonly>
+<input id="shorthttps" value="https://<?php echo $_SERVER['HTTP_HOST']."/".$short;?>" readonly>
 <button class="cbbtn" data-clipboard-target="#shorthttps">
     Copy HTTPS Link
 </button></p><p>
-<input id="shorthttp" value="http://<?php echo $_SERVER['HTTP_HOST'].$short;?>" readonly>
+<input id="shorthttp" value="http://<?php echo $_SERVER['HTTP_HOST']."/".$short;?>" readonly>
 <button class="cbbtn" data-clipboard-target="#shorthttp">
     Copy HTTP Link
 </button></p><p>
-<input id="countlink" value="https://<?php echo $_SERVER['HTTP_HOST'].$short;?>/count.txt" readonly>
+<input id="countlink" value="https://<?php echo $_SERVER['HTTP_HOST']."/".$short;?>/count.txt" readonly>
 <button class="cbbtn" data-clipboard-target="#countlink">
 Copy visit counter link
 </button></p>
