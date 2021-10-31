@@ -1,0 +1,78 @@
+<?php include 'dlConfig.php';?>
+<!doctype html>
+<html>
+<head>
+<script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+<!-- BEGIN UPLOADED HEADER -->
+<?php echo strip_tags(file_get_contents("head.txt"),"<title><meta>");?>
+<!-- END UPLOADED HEADER -->
+<link rel="stylesheet" href="/delplink.css">
+<script src="/delplink.js"></script>
+<script>
+function startup(){
+	var remakef = document.getElementById("remakeform");
+	remakef.n.value = location.pathname.substring(1).replace('/','');
+	checkUrl(remakef);
+}
+function viewHTML(){
+	document.getElementById("paracode").innerHTML=document.getElementById("paracode").innerText;
+}
+</script>
+</head>
+<body onload="startup()">
+<tt onclick="logoclick()" title="Click here to shorten links or upload code" id="delplinklogo"><pre>
+         _/            _/            _/  _/            _/                                          
+    _/_/_/    _/_/    _/  _/_/_/    _/      _/_/_/    _/  _/        _/    _/  _/    _/  _/_/_/_/   
+ _/    _/  _/_/_/_/  _/  _/    _/  _/  _/  _/    _/  _/_/            _/_/    _/    _/      _/      
+_/    _/  _/        _/  _/    _/  _/  _/  _/    _/  _/  _/        _/    _/  _/    _/    _/         
+ _/_/_/    _/_/_/  _/  _/_/_/    _/  _/  _/    _/  _/    _/  _/  _/    _/    _/_/_/  _/_/_/_/      
+                      _/                                                        _/                 
+                     _/                                                    _/_/                    
+</pre></tt>
+<p id="paracode">
+<?php echo highlight_file("code.txt",true);
+$count=(1*file_get_contents("count.txt"))+1;
+file_put_contents("count.txt",$count);?>
+<input type="button" value="Execute HTML" onclick="viewHTML()">
+</p>
+<form method="post" action="/" id="remakeform"><center>Remake code</center>
+New url http(s)://delplink.xyz/<input type="text" name="n"><br>
+<input type="hidden" name="t" value="2">
+<textarea name="c"><?php echo htmlentities(file_get_contents("code.txt"));?></textarea><br>
+HTML Header(only title and meta tags allowed):
+<textarea name="h"><?php echo htmlentities(file_get_contents("head.txt"));?></textarea><br>
+<p><input type="submit" value="Remake Code">
+<input type="button" value="Test" onclick="checkUrl(this.form)">
+<input type="button" value="Generate URL" onclick="randomUrl(this.form)">
+</p></form>
+if(strlen($disqusDoman)>0){?>
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    var disqus_config = function () {
+    this.page.url = location.href;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = "<?php echo sha1($_SERVER['SCRIPT_FILEÑAME']);?>";// Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://<?php echo $disqusDomain;?>/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<?php }?>
+<form method="get" action="code.txt">
+<?php readfile("count.txt");?> visits<br>
+<input type="submit" value="See as plain text">
+</form>
+<center>
+<a href="/">delplink,xyz</a> is powered by <a href="//delphijustin.biz">
+delphijustin Industries</a></center>
+</body>
+</html>
