@@ -62,8 +62,8 @@ function createWWW($URL){
 	return '<?php $count=(1*file_get_contents("count.txt"))+1;file_put_contents("count.txt",$count);header("Location: '.$URL.'");/* '.$_SERVER["REMOTE_ADDR"].' */?>';
 }
 switch($_SERVER["SERVER_PORT"]*1){
-	case 80:echo '<p>You are using an decrypted connection. <a href="https://delplink.xyz">Click here to use secure https</a></p>';break;
-	case 443:echo '<p>You are using the safe encrypted connection. <a href="http://delplink.xyz/?http=1">Click here to use decrypted http</a></p>';break;
+	case 80:echo '<p>You are using an decrypted connection. <a href="https://'.$_SERVER['HTTP_HOST'].'">Click here to use secure https</a></p>';break;
+	case 443:echo '<p>You are using the safe encrypted connection. <a href="http://'.$_SERVER['HTTP_HOST'].'/?http=1">Click here to use decrypted http</a></p>';break;
 }?>
 <form method="post" enctype="multipart/form-data">
 Shortlink link: http(s)://delplink.xyz/<input type="text" name="n"><br>
