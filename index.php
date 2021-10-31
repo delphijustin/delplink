@@ -111,15 +111,15 @@ break;
 if($indexphp===false){echo "savelink: Failed.<br>";}else{?>
 <center>Your shorten links:</center><p>
 <p>
-<input id="shorthttps" value="https://delplink.xyz/<?php echo $short;?>" readonly>
+<input id="shorthttps" value="https://<?php echo $_SERVER['HTTP_HOST'].$short;?>" readonly>
 <button class="cbbtn" data-clipboard-target="#shorthttps">
     Copy HTTPS Link
 </button></p><p>
-<input id="shorthttp" value="http://delplink.xyz/<?php echo $short;?>" readonly>
+<input id="shorthttp" value="http://<?php echo $_SERVER['HTTP_HOST'].$short;?>" readonly>
 <button class="cbbtn" data-clipboard-target="#shorthttp">
     Copy HTTP Link
 </button></p><p>
-<input id="countlink" value="https://delplink.xyz/<?php echo $short;?>/count.txt" readonly>
+<input id="countlink" value="https://<?php echo $_SERVER['HTTP_HOST'].$short;?>/count.txt" readonly>
 <button class="cbbtn" data-clipboard-target="#countlink">
 Copy visit counter link
 </button></p>
@@ -128,10 +128,4 @@ Type the word "YES" in uppercase to delete the link:
 <input type="text" name="yes"><input type="submit" value="Delete"></form>
 <script>visiturl="/<?php echo $short;?>/count.txt?";
 setInterval(getVisits,10000);</script><?php }} ?>
-<script type="text/javascript"> //<![CDATA[
-  var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
-  document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
-//]]></script>
-<script language="JavaScript" type="text/javascript">
-  TrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");
-</script></body></html>
+</body></html>
