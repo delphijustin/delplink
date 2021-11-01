@@ -48,7 +48,7 @@ HTML Header(only title and meta tags allowed):
 <input type="button" value="Test" onclick="checkUrl(this.form)">
 <input type="button" value="Generate URL" onclick="randomUrl(this.form)">
 </p></form>
-if(strlen($disqusDoman)>0){?>
+<?php if(strlen($disqusDoman)>0){?>
 <div id="disqus_thread"></div>
 <script>
     /**
